@@ -9,7 +9,14 @@ std::string Slice(const std::string &str, ssize_t start, ssize_t end) noexcept{
 
 std::string Capitalize(const std::string &str) noexcept{
     // Replace code here
-    return "";
+    std::string Temp = str;
+    if(!Temp.empty()){
+        Temp[0] = toupper(Temp[0]);
+        for(size_t Index = 1; Index < Temp.length(); Index++){
+            Temp[Index] = tolower(Temp[Index]);
+        }
+    }
+    return Temp;
 }
 
 std::string Upper(const std::string &str) noexcept{
@@ -24,17 +31,36 @@ std::string Lower(const std::string &str) noexcept{
 
 std::string LStrip(const std::string &str) noexcept{
     // Replace code here
-    return "";
+    std::string Temp = str;
+    size_t Index = 0;
+    size_t Length = Temp.length();
+    while((Index < Length) && isspace(Temp[Index])){
+        Index++;
+    }
+
+    return Temp.substr(Index);
 }
 
 std::string RStrip(const std::string &str) noexcept{
     // Replace code here
+    std::string Temp = str;
+    if(!Temp.empty()){
+        size_t Index = Temp.length()-1;
+        while(isspace(Temp[Index])){
+            if(!Index){
+                return "";
+            }
+            Index--;
+        }
+        return Temp.substr(0,Index+1);
+    }
     return "";
+
 }
 
 std::string Strip(const std::string &str) noexcept{
     // Replace code here
-    return "";
+    return LStrip(RStrip(str));
 }
 
 std::string Center(const std::string &str, int width, char fill) noexcept{
