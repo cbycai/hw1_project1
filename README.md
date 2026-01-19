@@ -1,58 +1,41 @@
 # Project X README
 
-Student 1: Partner1 Name (123456789)
+Student 1: Bingyuan Cai (923761743)
 
-Student 2: Partner2 Name (123456987)
 
 ## Project Status
-This the current status of the project ...
+This the current status of the project is completed.
 
-## Known Issues
-The project fails to function properly in ...
 
 ## Code References
-* [Different ways to initialize variables](https://stackoverflow.com/questions/22543875/different-ways-to-initialize-variables)
-* [Some other link](https://stackoverflow.com)
-
+* [ways to use append](https://blog.csdn.net/weixin_42258743/article/details/107964192)
+* [some information about Levenshtein distance] (https://baike.baidu.com/item/%E8%8E%B1%E6%96%87%E6%96%AF%E5%9D%A6%E8%B7%9D%E7%A6%BB/14448097)
+* [ways to use find](https://www.geeksforgeeks.org/cpp/std-find-in-cpp/)
 ## Generative AI Use
-I used ChatGPT for Prompt 1, and ZZZZZ for Prompt 2....
+I used ChatGPT for Prompt 1
 
 ### Prompt 1
-How do I iterate over all characters in a string in C++17?
+How to use append function in c++ and give me some example
 
 ### Response 1
-In C++17, you can iterate over all characters in a string using a range-based for loop. Here's an example:
-```cpp
 #include <iostream>
 #include <string>
+using namespace std;
 
 int main() {
-    std::string myString = "Hello, World!";
-
-    // Using range-based for loop to iterate over characters in the string
-    for (char c : myString) {
-        std::cout << c << " ";
-    }
-
-    return 0;
+    string s = "Hello";
+    s.append(" World");
+    cout << s << endl;
 }
+Hello World
+
+string a = "Good";
+string b = " Morning";
+
+a.append(b);
+cout << a << endl;
+
+Good Morning
+
+and ect
 ```
-In this example, the `for (char c : myString)` loop iterates over each character in the string `myString`, and the variable `c` takes on the value of each character in turn. The loop body prints each character followed by a space.
-
-This is a concise and readable way to iterate over the characters in a string in C++17.
-
-### Chagnes 1
-I only needed the `for` loop part, and my string was named `bar` so I changed it to just:
-```cpp
-// AI Generated
-for (char c : bar) {
-```
-
-### Prompt 2
-My other prompt...
-
-### Response 2
-The other response...
-
-### Changes 2
-The other changes made...
