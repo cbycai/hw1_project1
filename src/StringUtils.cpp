@@ -270,7 +270,36 @@ std::string Join(const std::string &str, const std::vector< std::string > &vect)
 
 std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
     // Replace code here
-    return "";
+    std::string Temp;
+    //tabsize<=0
+    if(tabsize<=0){
+        for(char c : str){
+            if(c!='\t'){
+                Temp = Temp+c;
+            }
+        }
+        return Temp;
+    }
+
+    //tabsize > 0
+    int col = 0;
+
+    for(char c : str){
+        if(c=='\t'){
+            int spaces = tabsize - (col%tabsize);
+            Temp.append(spaces,' ');
+            col = col + spaces;
+        }
+        else if(c=='\n'){
+            Temp = Temp + c;
+            col = 0;
+        }
+        else{
+            Temp = Temp +c;
+            col++;
+        }
+    }
+    return Temp;
 }
 
 int EditDistance(const std::string &left, const std::string &right, bool ignorecase) noexcept{

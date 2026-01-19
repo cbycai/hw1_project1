@@ -228,7 +228,24 @@ TEST(StringUtilsTest, Join){
 }
 
 TEST(StringUtilsTest, ExpandTabs){
-    
+    EXPECT_EQ(StringUtils::ExpandTabs("a\tb", 4),std::string("a   b"));
+    //2 1
+    EXPECT_EQ(StringUtils::ExpandTabs("ab\tc", 4),std::string("ab  c"));
+    //2 tab
+    EXPECT_EQ(StringUtils::ExpandTabs("a\t\tb", 4),std::string("a       b"));
+    //next line
+    EXPECT_EQ(StringUtils::ExpandTabs("a\tb\nc\td", 4),std::string("a   b\nc   d"));
+    //tabsize is 1
+    EXPECT_EQ(StringUtils::ExpandTabs("a\tb", 1),std::string("a b"));
+    //tabsize is 8
+    EXPECT_EQ(StringUtils::ExpandTabs("a\tb", 8),std::string("a       b"));
+    //no tab
+    EXPECT_EQ(StringUtils::ExpandTabs("abc", 4),std::string("abc"));
+    //no string 
+    EXPECT_EQ(StringUtils::ExpandTabs("", 4),std::string(""));
+    //tabsize is 0 or <0
+    EXPECT_EQ(StringUtils::ExpandTabs("a\tb", 0),std::string("ab"));
+    EXPECT_EQ(StringUtils::ExpandTabs("a\tb", -2),std::string("ab"));
 }
 
 TEST(StringUtilsTest, EditDistance){
