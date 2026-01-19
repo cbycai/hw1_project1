@@ -67,12 +67,32 @@ std::string Capitalize(const std::string &str) noexcept{
 
 std::string Upper(const std::string &str) noexcept{
     // Replace code here
-    return "";
+    std::string Temp = str;
+    if(str.empty()){
+        return "";
+    }
+    for(size_t Index = 0; Index < Temp.length(); Index++){
+        if(Temp[Index]>=97 && Temp[Index]<=122){
+            Temp[Index] = toupper(Temp[Index]);
+        }
+    }
+
+    return Temp;
 }
 
 std::string Lower(const std::string &str) noexcept{
     // Replace code here
-    return "";
+     std::string Temp = str;
+    if(str.empty()){
+        return "";
+    }
+    for(size_t Index = 0; Index < Temp.length(); Index++){
+        if(Temp[Index]>=65 && Temp[Index]<=90){
+            Temp[Index] = tolower(Temp[Index]);
+        }
+    }
+
+    return Temp;
 }
 
 std::string LStrip(const std::string &str) noexcept{

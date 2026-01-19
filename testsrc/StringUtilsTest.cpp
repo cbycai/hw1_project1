@@ -68,11 +68,19 @@ TEST(StringUtilsTest, Capitalize){
 }
 
 TEST(StringUtilsTest, Upper){
-    
+    EXPECT_EQ(StringUtils::Upper("hello"), std::string("HELLO"));
+    EXPECT_EQ(StringUtils::Upper("Hello"), std::string("HELLO"));
+    EXPECT_EQ(StringUtils::Upper("He!ll-o"), std::string("HE!LL-O"));
+    EXPECT_EQ(StringUtils::Upper(""), std::string(""));
+    EXPECT_EQ(StringUtils::Upper(" "), std::string(" "));
 }
 
 TEST(StringUtilsTest, Lower){
-    
+    EXPECT_EQ(StringUtils::Lower("HELLO"), std::string("hello"));
+    EXPECT_EQ(StringUtils::Lower("Hello"), std::string("hello"));
+    EXPECT_EQ(StringUtils::Lower("He!ll-o"), std::string("he!ll-o"));
+    EXPECT_EQ(StringUtils::Lower(""), std::string(""));
+    EXPECT_EQ(StringUtils::Lower(" "), std::string(" "));
 }
 
 TEST(StringUtilsTest, LStrip){
