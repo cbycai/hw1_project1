@@ -131,17 +131,57 @@ std::string Strip(const std::string &str) noexcept{
 
 std::string Center(const std::string &str, int width, char fill) noexcept{
     // Replace code here
-    return "";
+    std::string Temp = str;
+    int left;
+    int right;
+    
+    if(width<=Temp.length()){
+        return Temp;
+    }
+
+    left = (width - str.length())/2;
+    right = width-str.length() - left;
+    
+    std::string leftstring;
+    std::string rightstring;
+    leftstring = std::string(left,fill);
+    rightstring = std::string(right,fill);
+    Temp = leftstring+Temp+rightstring;
+    return Temp;
 }
 
 std::string LJust(const std::string &str, int width, char fill) noexcept{
     // Replace code here
-    return "";
+    std::string Temp = str;
+    int right;
+    
+    if(width<=Temp.length()){
+        return Temp;
+    }
+
+    right = width-str.length();
+    
+    std::string rightstring;
+    rightstring = std::string(right,fill);
+    Temp = Temp+rightstring;
+    return Temp;
 }
 
 std::string RJust(const std::string &str, int width, char fill) noexcept{
     // Replace code here
-    return "";
+    std::string Temp = str;
+    int left;
+    
+    if(width<=Temp.length()){
+        return Temp;
+    }
+
+    left = width-str.length();
+    
+    std::string leftstring;
+    leftstring = std::string(left,fill);
+    Temp = leftstring+Temp;
+    return Temp;
 }
 
 std::string Replace(const std::string &str, const std::string &old, const std::string &rep) noexcept{

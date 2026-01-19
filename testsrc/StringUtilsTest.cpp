@@ -57,8 +57,6 @@ TEST(StringUtilsTest, SliceTest){
     EXPECT_EQ(StringUtils::Slice("a", 0, -1), std::string(""));
 }
 
-
-
 TEST(StringUtilsTest, Capitalize){
     EXPECT_EQ(StringUtils::Capitalize(""), std::string(""));
     EXPECT_EQ(StringUtils::Capitalize("hello"), std::string("Hello"));
@@ -114,15 +112,54 @@ TEST(StringUtilsTest, Strip){
 }
 
 TEST(StringUtilsTest, Center){
-    
+    //width is less and equal to length
+    EXPECT_EQ(StringUtils::Center("Hello", 1,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::Center("Hello", 3,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::Center("Hello", 5,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::Center("Hello", 3,' '),std::string("Hello"));
+    //even number 
+    EXPECT_EQ(StringUtils::Center("Hello", 8,'a'),std::string("aHelloaa"));
+    EXPECT_EQ(StringUtils::Center("Hello", 8,' '),std::string(" Hello  "));
+    //odd number
+    EXPECT_EQ(StringUtils::Center("Hello", 7,'a'),std::string("aHelloa"));
+    EXPECT_EQ(StringUtils::Center("Hello", 9,' '),std::string("  Hello  "));
+    //empty string
+    EXPECT_EQ(StringUtils::Center("", 3,'a'),std::string("aaa"));
+    EXPECT_EQ(StringUtils::Center("", 4,'a'),std::string("aaaa"));
+    EXPECT_EQ(StringUtils::Center("", 3,' '),std::string("   "));
 }
 
 TEST(StringUtilsTest, LJust){
-    
+    //width is less and equal to length
+    EXPECT_EQ(StringUtils::LJust("Hello", 1,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::LJust("Hello", 3,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::LJust("Hello", 5,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::LJust("Hello", 3,' '),std::string("Hello"));
+    //basic 
+    EXPECT_EQ(StringUtils::LJust("Hello", 8,'a'),std::string("Helloaaa"));
+    EXPECT_EQ(StringUtils::LJust("Hello", 7,' '),std::string("Hello  "));
+    EXPECT_EQ(StringUtils::LJust(" ", 4,' '),std::string("    "));
+    //empty string
+    EXPECT_EQ(StringUtils::LJust("", 3,'a'),std::string("aaa"));
+    EXPECT_EQ(StringUtils::LJust("", 4,'a'),std::string("aaaa"));
+    EXPECT_EQ(StringUtils::LJust("", 3,' '),std::string("   "));
 }
 
 TEST(StringUtilsTest, RJust){
-    
+    //width is less and equal to length
+    EXPECT_EQ(StringUtils::RJust("Hello", 1,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::RJust("Hello", 3,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::RJust("Hello", 5,'a'),std::string("Hello"));
+    EXPECT_EQ(StringUtils::RJust("Hello", 3,' '),std::string("Hello"));
+    //basic 
+    EXPECT_EQ(StringUtils::RJust("Hello", 8,'a'),std::string("aaaHello"));
+    EXPECT_EQ(StringUtils::RJust("Hello", 7,' '),std::string("  Hello"));
+    EXPECT_EQ(StringUtils::RJust(" Hello", 7,'a'),std::string("a Hello"));
+    EXPECT_EQ(StringUtils::RJust(" ", 4,' '),std::string("    "));
+    //empty string
+    EXPECT_EQ(StringUtils::RJust("", 3,'a'),std::string("aaa"));
+    EXPECT_EQ(StringUtils::RJust("", 4,'a'),std::string("aaaa"));
+    EXPECT_EQ(StringUtils::RJust("", 3,' '),std::string("   "));
 }
 
 TEST(StringUtilsTest, Replace){
