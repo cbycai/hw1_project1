@@ -223,7 +223,31 @@ std::string Replace(const std::string &str, const std::string &old, const std::s
 
 std::vector< std::string > Split(const std::string &str, const std::string &splt) noexcept{
     // Replace code here
-    return {};
+    std::vector<std::string> Temp;
+
+    //no split sign
+    if(splt.empty()){
+        Temp.push_back(str);
+        return Temp;
+    }
+
+    //start and find next split position
+    size_t pos = 0; 
+    size_t found;
+
+    while(true){
+        found = str.find(splt, pos);
+        if(found == std::string::npos){
+            break;
+        }
+
+        Temp.push_back(str.substr(pos,found-pos));
+        //jump
+        pos = found + splt.size();
+    }
+
+    Temp.push_back(str.substr(pos));
+    return Temp;
 }
 
 std::string Join(const std::string &str, const std::vector< std::string > &vect) noexcept{

@@ -191,7 +191,23 @@ TEST(StringUtilsTest, Replace){
 }
 
 TEST(StringUtilsTest, Split){
-    
+    //basic
+    EXPECT_EQ(StringUtils::Split("a,b,c",","), std::vector<std::string>({"a","b","c"}));
+    //odd and even
+    EXPECT_EQ(StringUtils::Split("a---b---c","--"), std::vector<std::string>({"a","-b","-c"}));
+    //no split
+    EXPECT_EQ(StringUtils::Split("abc","--"), std::vector<std::string>({"abc"}));
+    // all split
+    EXPECT_EQ(StringUtils::Split("abc","abc"), std::vector<std::string>({"",""}));
+    EXPECT_EQ(StringUtils::Split("abab","ab"), std::vector<std::string>({"","",""}));
+    //empty string
+    EXPECT_EQ(StringUtils::Split("","--"), std::vector<std::string>({""}));
+    //empty split 
+    EXPECT_EQ(StringUtils::Split("abc",""), std::vector<std::string>({"abc"}));
+    //larger
+    EXPECT_EQ(StringUtils::Split("abc","abcd"), std::vector<std::string>({"abc"}));
+    //one space split
+    EXPECT_EQ(StringUtils::Split("a b c"," "), std::vector<std::string>({"a","b","c"}));
 }
 
 TEST(StringUtilsTest, Join){
