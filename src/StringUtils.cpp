@@ -186,7 +186,39 @@ std::string RJust(const std::string &str, int width, char fill) noexcept{
 
 std::string Replace(const std::string &str, const std::string &old, const std::string &rep) noexcept{
     // Replace code here
-    return "";
+    //no str
+    if(str.empty()){
+        return "";
+    }
+
+    //no old
+    if(old.empty()){
+        return str;
+    }
+
+    //old is larger than srr
+    if(old.length() > str.length()){
+        return str;
+    }
+
+    std::string Temp;
+    size_t found = 0;
+    size_t pos = 0;
+
+    while (true) {
+        found = str.find(old, pos);
+        //npos means to the string end
+        if (found == std::string::npos){
+            break;
+        }
+        //append the string before old
+        Temp.append(str, pos, found - pos);
+        Temp += rep;
+        pos = found + old.size();
+    }
+    //about append https://blog.csdn.net/weixin_42258743/article/details/107964192
+    Temp.append(str, pos, std::string::npos);
+    return Temp;
 }
 
 std::vector< std::string > Split(const std::string &str, const std::string &splt) noexcept{

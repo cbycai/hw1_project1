@@ -163,7 +163,31 @@ TEST(StringUtilsTest, RJust){
 }
 
 TEST(StringUtilsTest, Replace){
-    
+    //empty
+    EXPECT_EQ(StringUtils::Replace("", "a", "b"), std::string(""));
+    EXPECT_EQ(StringUtils::Replace("abc", "", "x"), std::string("abc"));
+    //longer than str
+    EXPECT_EQ(StringUtils::Replace("ab", "abcd", "abc"), std::string("ab"));
+    //not found
+    EXPECT_EQ(StringUtils::Replace("hello", "z", "x"), std::string("hello"));
+    //replace once
+    EXPECT_EQ(StringUtils::Replace("abc", "b", "X"), std::string("aXc"));
+    EXPECT_EQ(StringUtils::Replace("abc", "a", "X"), std::string("Xbc"));
+    EXPECT_EQ(StringUtils::Replace("abc", "c", "X"), std::string("abX"));
+    //all
+    EXPECT_EQ(StringUtils::Replace("aaa", "a", "b"), std::string("bbb"));
+    EXPECT_EQ(StringUtils::Replace("bnbnbn", "n", "X"), std::string("bXbXbX"));
+    //block
+    EXPECT_EQ(StringUtils::Replace("aaaa", "aa", "b"), std::string("bb"));
+    EXPECT_EQ(StringUtils::Replace("aa", "a", "bb"), std::string("bbbb"));
+    //rep is empty
+    EXPECT_EQ(StringUtils::Replace("abcbcbc", "bc", ""), std::string("a"));
+    //odd and even!!!
+    EXPECT_EQ(StringUtils::Replace("aaaaa", "aa", "a"), std::string("aaa"));
+    EXPECT_EQ(StringUtils::Replace("aaaaaaaa", "aaa", "a"), std::string("aaaa"));
+
+    //spaces
+    EXPECT_EQ(StringUtils::Replace("a b a", "a", "*"), std::string("* b *"));
 }
 
 TEST(StringUtilsTest, Split){
