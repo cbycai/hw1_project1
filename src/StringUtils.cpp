@@ -252,7 +252,20 @@ std::vector< std::string > Split(const std::string &str, const std::string &splt
 
 std::string Join(const std::string &str, const std::vector< std::string > &vect) noexcept{
     // Replace code here
-    return "";
+    //empty vector
+    if(vect.empty()){
+        return "";
+    }
+
+    //put first element
+    std::string Temp = vect[0];
+    size_t i =1;
+    while(i<vect.size()){
+        Temp = Temp + str;
+        Temp = Temp + vect[i];
+        ++i;
+    }
+    return Temp;
 }
 
 std::string ExpandTabs(const std::string &str, int tabsize) noexcept{

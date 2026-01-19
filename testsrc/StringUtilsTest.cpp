@@ -211,7 +211,20 @@ TEST(StringUtilsTest, Split){
 }
 
 TEST(StringUtilsTest, Join){
-    
+    EXPECT_EQ(StringUtils::Join(",", std::vector<std::string>({"a","b","c"})),std::string("a,b,c"));
+    EXPECT_EQ(StringUtils::Join("--", std::vector<std::string>({"a","b","c"})),std::string("a--b--c"));
+    //single
+    EXPECT_EQ(StringUtils::Join(",", std::vector<std::string>({"abc"})),std::string("abc"));
+    //empty
+    EXPECT_EQ(StringUtils::Join(",", std::vector<std::string>()),std::string(""));
+    //splt is empty
+    EXPECT_EQ(StringUtils::Join("", std::vector<std::string>({"a","b","c"})),std::string("abc"));
+    //string has empty 
+    EXPECT_EQ(StringUtils::Join(",", std::vector<std::string>({"a","","c"})),std::string("a,,c"));
+    // all empty
+    EXPECT_EQ(StringUtils::Join(",", std::vector<std::string>({"","",""})),std::string(",,"));
+    //splt is a space
+    EXPECT_EQ(StringUtils::Join(" ", std::vector<std::string>({"a","b","c"})),std::string("a b c"));
 }
 
 TEST(StringUtilsTest, ExpandTabs){
