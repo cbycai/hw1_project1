@@ -304,7 +304,48 @@ std::string ExpandTabs(const std::string &str, int tabsize) noexcept{
 
 int EditDistance(const std::string &left, const std::string &right, bool ignorecase) noexcept{
     // Replace code here
-    return 0;
+    int lenStr1 = static_cast<int>(left.size());
+    int lenStr2 = static_cast<int>(right.size());
+
+    std::vector<std::vector<int>> d(lenStr2 + 1, std::vector<int>(lenStr1 + 1));
+    int i, j, cost;
+    // for i = 0 to lenStr2: d[i,0] = i
+    for (i = 0; i <= lenStr2; ++i) {
+        d[i][0] = i;
+    }
+    for(j=0;j<=lenStr1;++j){
+        d[0][j] = j;
+    }
+
+    for (i = 1; i <= lenStr2; ++i) {
+        // for j = 1 to lenStr1
+        for (j = 1; j <= lenStr1; ++j) {
+
+            char a = right[i - 1];   
+            char b = left[j - 1];   
+
+            if (ignorecase) {
+                a = static_cast<char>(std::tolower(static_cast<unsigned char>(a)));
+                b = static_cast<char>(std::tolower(static_cast<unsigned char>(b)));
+            }
+
+           
+            int cost;
+            if (a == b) {
+                cost = 0;
+            } 
+            else {
+                cost = 1;
+            }
+
+            // d[i,j] = min( d[i-1,j]+1, d[i,j-1]+1, d[i-1,j-1]+cost )
+            d[i][j] = std::min(d[i - 1][j] + 1, std::min(d[i][j - 1] + 1, d[i - 1][j - 1] + cost));
+        }
+    }
+
+    // return d[lenStr2, lenStr1]
+    return d[lenStr2][lenStr1];
 }
 
-};
+}
+

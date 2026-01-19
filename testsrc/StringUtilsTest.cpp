@@ -249,5 +249,24 @@ TEST(StringUtilsTest, ExpandTabs){
 }
 
 TEST(StringUtilsTest, EditDistance){
-    
+    // the same 
+    EXPECT_EQ(StringUtils::EditDistance("abc", "abc", false), (0));
+    // once
+    EXPECT_EQ(StringUtils::EditDistance("abc", "Abc", false), (1));
+    // insert
+    EXPECT_EQ(StringUtils::EditDistance("abc", "abcd", false), (1));
+    //delete
+    EXPECT_EQ(StringUtils::EditDistance("abcd", "abc", false), (1));
+    //wiki
+    EXPECT_EQ(StringUtils::EditDistance("kitten", "sitting", false), (3));
+    //empty string
+    EXPECT_EQ(StringUtils::EditDistance("", "", false), (0));
+    EXPECT_EQ(StringUtils::EditDistance("", "abc", false), (3));
+    EXPECT_EQ(StringUtils::EditDistance("abc", "", false), (3));
+    //capitalied
+    EXPECT_EQ(StringUtils::EditDistance("A", "a", false), (1));
+    //no capitalized
+    EXPECT_EQ(StringUtils::EditDistance("A", "a", true), (0));
+    EXPECT_EQ(StringUtils::EditDistance("AbC", "aBc", true), (0));
+
 }
